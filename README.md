@@ -25,17 +25,17 @@ The plugin treats Docker as a cloud provider, spinning up containers as and when
 Before plugin configuration you should enable the remote API for dockerd (Docker Daemon):
 After completing these steps, you will have enabled the remote API for dockerd, without editing the systemd unit file in place:
 
-1) Create a file at /etc/systemd/system/docker.service.d/startup_options.conf with the below contents:
+1) Create a file at ``` /etc/systemd/system/docker.service.d/startup_options.conf ``` with the below contents:
 
-...
+```
 [Service]
 ExecStart=
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376
-...
+```
 
-2) $ sudo systemctl daemon-reload
+2) ``` $ sudo systemctl daemon-reload ```
 
-3) $ sudo systemctl restart docker.service
+3) ``` $ sudo systemctl restart docker.service ```
 
 now the jenkins docker plugin can connect to the daemon.
 
@@ -87,22 +87,30 @@ If you see the error message There’s no agent/cloud that matches this assignme
 
 6) in The cloud input section, choose your newly created cloud name
 
-7) in the image input section put your-image-name:${BUILD_NUMBER}
+7) in the image input section put ``` your-image-name:${BUILD_NUMBER} ```
 
-8) Run the job and whait until it starts after that it will create new image your-image-name:${BUILD_NUMBER} in the Docker Host
+8) Run the job and wait until it start the container slave, after that it will create new image with name
+``` your-image-name:${BUILD_NUMBER} ``` in the Docker Host
 
 9) you can now add a new build step using the Add Build Step dropdown. Select Execute Shell.
 this simple script will tagging image and run container from newly created image and remove previous container every Jenkins build run
-### shell script:
 
-...
+### shell script:
+remove peviously running container, old image
+```
    docker stop your-container-name
    docker rm  your-container-name
    docker rmi your-image-name:latest
+   ```
+   tagging the  new built image in step 8
+   ```
    docker tag your-image-name:${BUILD_NUMBER}  your-image-name:latest
-   docker run --name your-image-name  -d -p 80:80  reactive:latest
-...   
+   docker run --name your-container-name  -d -p 80:3000  your-image-name:latest
+``` 
+#### for more help, you can contact me by Email:
+#### romandulman@gmail.com
+#### dev@opotel.com
 
-Resources and Credits:
-https://www.katacoda.com/courses/jenkins/build-docker-images
-https://hub.docker.com/r/benhall/dind-jenkins-agent
+### Resources and Credits:
+#### https://www.katacoda.com/courses/jenkins/build-docker-images
+#### https://hub.docker.com/r/benhall/dind-jenkins-agent
