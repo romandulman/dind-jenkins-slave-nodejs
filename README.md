@@ -27,9 +27,11 @@ After completing these steps, you will have enabled the remote API for dockerd, 
 
 1) Create a file at /etc/systemd/system/docker.service.d/startup_options.conf with the below contents:
 
+...
 [Service]
 ExecStart=
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376
+...
 
 2) $ sudo systemctl daemon-reload
 
@@ -93,12 +95,13 @@ If you see the error message There’s no agent/cloud that matches this assignme
 this simple script will tagging image and run container from newly created image and remove previous container every Jenkins build run
 ### shell script:
 
+...
    docker stop your-container-name
    docker rm  your-container-name
    docker rmi your-image-name:latest
    docker tag your-image-name:${BUILD_NUMBER}  your-image-name:latest
    docker run --name your-image-name  -d -p 80:80  reactive:latest
-   
+...   
 
 Resources and Credits:
 https://www.katacoda.com/courses/jenkins/build-docker-images
