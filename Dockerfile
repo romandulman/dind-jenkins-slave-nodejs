@@ -5,7 +5,4 @@ RUN apt-get install nodejs
 RUN apt-get -y install bzip2
 RUN apt-get -y install software-properties-common
 RUN apt-get -y install python-software-properties
-RUN npm -g install selenium-node-webdriver
-RUN npm -g install karma
-RUN npm -g install mocha
-RUN npm -g install phantomjs
+
