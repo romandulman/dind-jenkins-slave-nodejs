@@ -1,7 +1,7 @@
 # dind-jenkins-slave-nodejs
 
 This Jenkins slave image contains Docker client and nodes 11.x for build and test NodeJS based applications.
-this image built from benhall/dind-Jenkins-agent:v2 image.
+this image extends benhall/dind-Jenkins-agent:v2 image.
 
 This concept gives us to dynamically spin up a Jenkins slave as Docker image builds our NodeJS based app and builds an image from our Dockerfile and finally deploy to the Docker host machine.You can pull this image to your local Docker host before adding it to the template -> docker pull romandulman/dind-jenkins-slave-nodejs *this recommended but not mandatory*
 Also Docker plugin need to be installed in Jenkins with configured new Cloud with template and put this image in the Docker image section input.
@@ -109,8 +109,7 @@ remove peviously running container, old image
 ``` 
 #### for more help, you can contact me by Email:
 #### romandulman@gmail.com
-#### dev@opotel.com
+
 
 ### Resources and Credits:
 #### https://www.katacoda.com/courses/jenkins/build-docker-images
-#### https://hub.docker.com/r/benhall/dind-jenkins-agent
