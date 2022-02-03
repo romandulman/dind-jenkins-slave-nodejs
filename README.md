@@ -15,7 +15,6 @@ Also Docker plugin need to be installed in Jenkins with configured new Cloud wit
 6) The plugins will now be downloaded and installed. Once complete, click the link Go back to the top page.
 Your Jenkins server can now be configured to build Docker Images.
 
-
 ## Add Docker Agent:
 Once the plugins have been installed, you can configure how they launch the Docker Containers. The configuration will tell the plugin which Docker Image to use for the agent and which Docker daemon to run the containers and builds on.
 
